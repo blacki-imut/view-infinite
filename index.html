@@ -162,46 +162,71 @@ iframe{
 </div>
 
 <script>
+<script>
 const grid = document.getElementById("grid");
 
-/* BUAT 20 MONITOR */
-for(let i=1;i<=20;i++){
+/* BUAT HTML SEKALIGUS */
+let html = "";
 
-  grid.innerHTML += `
+for(let i = 1; i <= 20; i++){
+
+  html += `
     <div class="monitor">
-      <input id="link${i}" placeholder="Link ${i}">
-      
-      <button class="play" onclick="playVideo(${i})">
+
+      <input
+        id="link${i}"
+        placeholder="Link ${i}"
+      >
+
+      <button
+        class="play"
+        onclick="playVideo(${i})"
+      >
         Play
       </button>
 
-      <iframe id="frame${i}" allowfullscreen></iframe>
+      <iframe
+        id="frame${i}"
+        allowfullscreen
+      ></iframe>
+
     </div>
   `;
 }
 
+/* MASUKKAN KE GRID */
+grid.innerHTML = html;
+
 /* PLAY VIDEO */
 function playVideo(id){
 
-  const url = document.getElementById("link"+id).value;
+  const url =
+    document.getElementById("link" + id).value;
 
   let vid = "";
 
   if(url.includes("watch?v=")){
-    vid = url.split("watch?v=")[1].split("&")[0];
-  }
-  else if(url.includes("youtu.be/")){
+
+    vid = url
+      .split("watch?v=")[1]
+      .split("&")[0];
+
+  } else if(url.includes("youtu.be/")){
+
     vid = url.split("youtu.be/")[1];
   }
 
-  document.getElementById("frame"+id).src =
-    "https://www.youtube.com/embed/" + vid;
+  if(vid){
+
+    document.getElementById("frame" + id).src =
+      "https://www.youtube.com/embed/" + vid;
+  }
 }
 
 /* PLAY ALL */
 function playAll(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
     playVideo(i);
   }
 }
@@ -209,11 +234,11 @@ function playAll(){
 /* SAVE */
 function saveLinks(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
 
     localStorage.setItem(
-      "yt"+i,
-      document.getElementById("link"+i).value
+      "yt" + i,
+      document.getElementById("link" + i).value
     );
   }
 
@@ -223,10 +248,10 @@ function saveLinks(){
 /* LOAD */
 function loadLinks(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
 
-    document.getElementById("link"+i).value =
-      localStorage.getItem("yt"+i) || "";
+    document.getElementById("link" + i).value =
+      localStorage.getItem("yt" + i) || "";
   }
 }
 
@@ -237,7 +262,7 @@ function updateClock(){
     new Date().toLocaleTimeString("id-ID");
 }
 
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
 updateClock();
 
