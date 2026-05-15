@@ -246,4 +246,395 @@ loadLinks();
 </script>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ANIBULBLACKIIMUT</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#0f172a;
+  font-family:Arial,sans-serif;
+  color:white;
+}
+
+.container{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:15px;
+  background:linear-gradient(90deg,#6366f1,#8b5cf6);
+}
+
+.header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.clock{
+  margin-top:5px;
+  font-size:13px;
+}
+
+/* PROMO */
+.promo{
+  text-align:center;
+  background:#111827;
+  padding:12px;
+  border-bottom:2px solid #6366f1;
+}
+
+.promo p{
+  margin:5px 0;
+  font-size:14px;
+}
+
+.promo button{
+  padding:8px 14px;
+  border:none;
+  border-radius:6px;
+  background:#6366f1;
+  color:white;
+  cursor:pointer;
+}
+
+/* CONTROL */
+.controls{
+  text-align:center;
+  margin:10px 0;
+}
+
+.controls button{
+  padding:8px 12px;
+  margin:4px;
+  border:none;
+  border-radius:5px;
+  background:#22c55e;
+  color:white;
+  cursor:pointer;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:10px;
+  padding:10px;
+}
+
+/* MONITOR */
+.monitor{
+  background:#000;
+  border-radius:8px;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+}
+
+.monitor input{
+  padding:8px;
+  margin-bottom:5px;
+  border:none;
+  border-radius:5px;
+}
+
+.play{
+  padding:8px;
+  margin-bottom:6px;
+  border:none;
+  border-radius:5px;
+  background:#6366f1;
+  color:white;
+  cursor:pointer;
+}
+
+iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
+  border-radius:5px;
+  background:#111;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .header h1{
+    font-size:20px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>ANIBULBLACKIIMUT</h1>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <!-- PROMO -->
+  <div class="promo">
+    <p>🔥 Kunjungi Website Resmi ANIBULBLACKIIMUT 🔥</p>
+
+    <a href="https://blacki-imut.github.io/script-gemerator" target="_blank">
+      <button>🌐 Buka Website</button>
+    </a>
+  </div>
+
+  <!-- CONTROL -->
+  <div class="controls">
+    <button onclick="playAll()">▶ Play All</button>
+    <button onclick="saveLinks()">💾 Save</button>
+    <button onclick="loadLinks()">🔄 Load</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+const grid = document.getElementById("grid");
+
+/* BUAT 20 MONITOR */
+for(let i=1;i<=20;i++){
+
+  grid.innerHTML += `
+    <div class="monitor">
+      <input id="link${i}" placeholder="Link ${i}">
+      
+      <button class="play" onclick="playVideo(${i})">
+        Play
+      </button>
+
+      <iframe id="frame${i}" allowfullscreen></iframe>
+    </div>
+  `;
+}
+
+/* PLAY VIDEO */
+function playVideo(id){
+
+  const url = document.getElementById("link"+id).value;
+
+  let vid = "";
+
+  if(url.includes("watch?v=")){
+    vid = url.split("watch?v=")[1].split("&")[0];
+  }
+  else if(url.includes("youtu.be/")){
+    vid = url.split("youtu.be/")[1];
+  }
+
+  document.getElementById("frame"+id).src =
+    "https://www.youtube.com/embed/" + vid;
+}
+
+/* PLAY ALL */
+function playAll(){
+
+  for(let i=1;i<=20;i++){
+    playVideo(i);
+  }
+}
+
+/* SAVE */
+function saveLinks(){
+
+  for(let i=1;i<=20;i++){
+
+    localStorage.setItem(
+      "yt"+i,
+      document.getElementById("link"+i).value
+    );
+  }
+
+  alert("Tersimpan!");
+}
+
+/* LOAD */
+function loadLinks(){
+
+  for(let i=1;i<=20;i++){
+
+    document.getElementById("link"+i).value =
+      localStorage.getItem("yt"+i) || "";
+  }
+}
+
+/* CLOCK */
+function updateClock(){
+
+  document.getElementById("clock").innerHTML =
+    new Date().toLocaleTimeString("id-ID");
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/* AUTO LOAD */
+loadLinks();
+</script>
+
+</body>
+</html>.play{
+  padding:8px;
+  margin-bottom:6px;
+  border:none;
+  border-radius:5px;
+  background:#6366f1;
+  color:white;
+  cursor:pointer;
+}
+
+iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
+  border-radius:5px;
+  background:#111;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .header h1{
+    font-size:20px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>ANIBULBLACKIIMUT</h1>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <!-- PROMO -->
+  <div class="promo">
+    <p>🔥 Kunjungi Website Resmi ANIBULBLACKIIMUT 🔥</p>
+
+    <a href="https://blacki-imut.github.io/script-gemerator" target="_blank">
+      <button>🌐 Buka Website</button>
+    </a>
+  </div>
+
+  <!-- CONTROL -->
+  <div class="controls">
+    <button onclick="playAll()">▶ Play All</button>
+    <button onclick="saveLinks()">💾 Save</button>
+    <button onclick="loadLinks()">🔄 Load</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+const grid = document.getElementById("grid");
+
+/* BUAT 20 MONITOR */
+for(let i=1;i<=20;i++){
+
+  grid.innerHTML += `
+    <div class="monitor">
+      <input id="link${i}" placeholder="Link ${i}">
+      
+      <button class="play" onclick="playVideo(${i})">
+        Play
+      </button>
+
+      <iframe id="frame${i}" allowfullscreen></iframe>
+    </div>
+  `;
+}
+
+/* PLAY VIDEO */
+function playVideo(id){
+
+  const url = document.getElementById("link"+id).value;
+
+  let vid = "";
+
+  if(url.includes("watch?v=")){
+    vid = url.split("watch?v=")[1].split("&")[0];
+  }
+  else if(url.includes("youtu.be/")){
+    vid = url.split("youtu.be/")[1];
+  }
+
+  document.getElementById("frame"+id).src =
+    "https://www.youtube.com/embed/" + vid;
+}
+
+/* PLAY ALL */
+function playAll(){
+
+  for(let i=1;i<=20;i++){
+    playVideo(i);
+  }
+}
+
+/* SAVE */
+function saveLinks(){
+
+  for(let i=1;i<=20;i++){
+
+    localStorage.setItem(
+      "yt"+i,
+      document.getElementById("link"+i).value
+    );
+  }
+
+  alert("Tersimpan!");
+}
+
+/* LOAD */
+function loadLinks(){
+
+  for(let i=1;i<=20;i++){
+
+    document.getElementById("link"+i).value =
+      localStorage.getItem("yt"+i) || "";
+  }
+}
+
+/* CLOCK */
+function updateClock(){
+
+  document.getElementById("clock").innerHTML =
+    new Date().toLocaleTimeString("id-ID");
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/* AUTO LOAD */
+loadLinks();
+</script>
+
+</body>
 </html>
