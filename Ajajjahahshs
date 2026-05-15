@@ -164,44 +164,69 @@ iframe{
 <script>
 const grid = document.getElementById("grid");
 
-/* BUAT 20 MONITOR */
-for(let i=1;i<=20;i++){
+/* BUAT HTML SEKALIGUS */
+let html = "";
 
-  grid.innerHTML += `
+for(let i = 1; i <= 20; i++){
+
+  html += `
     <div class="monitor">
-      <input id="link${i}" placeholder="Link ${i}">
-      
-      <button class="play" onclick="playVideo(${i})">
+
+      <input
+        id="link${i}"
+        placeholder="Link ${i}"
+      >
+
+      <button
+        class="play"
+        onclick="playVideo(${i})"
+      >
         Play
       </button>
 
-      <iframe id="frame${i}" allowfullscreen></iframe>
+      <iframe
+        id="frame${i}"
+        allow="autoplay"
+        allowfullscreen
+      ></iframe>
+
     </div>
   `;
 }
 
+/* MASUKKAN KE GRID */
+grid.innerHTML = html;
+
 /* PLAY VIDEO */
 function playVideo(id){
 
-  const url = document.getElementById("link"+id).value;
+  const url =
+    document.getElementById("link" + id).value;
 
   let vid = "";
 
   if(url.includes("watch?v=")){
-    vid = url.split("watch?v=")[1].split("&")[0];
-  }
-  else if(url.includes("youtu.be/")){
+
+    vid = url
+      .split("watch?v=")[1]
+      .split("&")[0];
+
+  } else if(url.includes("youtu.be/")){
+
     vid = url.split("youtu.be/")[1];
   }
 
-  document.getElementById("frame"+id).src =
-    "https://www.youtube.com/embed/" + vid;
+  if(vid){
+
+    document.getElementById("frame" + id).src =
+      "https://www.youtube.com/embed/" + vid + "?autoplay=1&mute=1";
+  }
 }
 
 /* PLAY ALL */
 function playAll(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
     playVideo(i);
   }
 }
@@ -209,11 +234,11 @@ function playAll(){
 /* SAVE */
 function saveLinks(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
 
     localStorage.setItem(
-      "yt"+i,
-      document.getElementById("link"+i).value
+      "yt" + i,
+      document.getElementById("link" + i).value
     );
   }
 
@@ -223,10 +248,10 @@ function saveLinks(){
 /* LOAD */
 function loadLinks(){
 
-  for(let i=1;i<=20;i++){
+  for(let i = 1; i <= 20; i++){
 
-    document.getElementById("link"+i).value =
-      localStorage.getItem("yt"+i) || "";
+    document.getElementById("link" + i).value =
+      localStorage.getItem("yt" + i) || "";
   }
 }
 
@@ -237,314 +262,7 @@ function updateClock(){
     new Date().toLocaleTimeString("id-ID");
 }
 
-setInterval(updateClock,1000);
-
-updateClock();
-
-/* AUTO LOAD */
-loadLinks();
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ANIBULBLACKIIMUT</title>
-
-<style>
-*{
-  box-sizing:border-box;
-}
-
-body{
-  margin:0;
-  background:#0f172a;
-  font-family:Arial,sans-serif;
-  color:white;
-}
-
-.container{
-  width:100%;
-  max-width:1400px;
-  margin:auto;
-}
-
-/* HEADER */
-.header{
-  text-align:center;
-  padding:15px;
-  background:linear-gradient(90deg,#6366f1,#8b5cf6);
-}
-
-.header h1{
-  margin:0;
-  font-size:24px;
-}
-
-.clock{
-  margin-top:5px;
-  font-size:13px;
-}
-
-/* PROMO */
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <h1>ANIBULBLACKIIMUT</h1>
-    <div class="clock" id="clock"></div>
-  </div>
-
-  <!-- PROMO -->
-  <div class="promo">
-    <p>🔥 Kunjungi Website Resmi ANIBULBLACKIIMUT 🔥</p>
-
-    <a href="https://blacki-imut.github.io/script-gemerator" target="_blank">
-      <button>🌐 Buka Website</button>
-    </a>
-  </div>
-
-  <!-- CONTROL -->
-  <div class="controls">
-    <button onclick="playAll()">▶ Play All</button>
-    <button onclick="saveLinks()">💾 Save</button>
-    <button onclick="loadLinks()">🔄 Load</button>
-  </div>
-
-  <!-- GRID -->
-  <div class="grid" id="grid"></div>
-
-</div>
-
-<script>
-const grid = document.getElementById("grid");
-
-/* BUAT 20 MONITOR */
-for(let i=1;i<=20;i++){
-
-  grid.innerHTML += `
-    <div class="monitor">
-      <input id="link${i}" placeholder="Link ${i}">
-      
-      <button class="play" onclick="playVideo(${i})">
-        Play
-      </button>
-
-      <iframe id="frame${i}" allowfullscreen></iframe>
-    </div>
-  `;
-}
-
-/* PLAY VIDEO */
-function playVideo(id){
-
-  const url = document.getElementById("link"+id).value;
-
-  let vid = "";
-
-  if(url.includes("watch?v=")){
-    vid = url.split("watch?v=")[1].split("&")[0];
-  }
-  else if(url.includes("youtu.be/")){
-    vid = url.split("youtu.be/")[1];
-  }
-
-  document.getElementById("frame"+id).src =
-    "https://www.youtube.com/embed/" + vid;
-}
-
-/* PLAY ALL */
-function playAll(){
-
-  for(let i=1;i<=20;i++){
-    playVideo(i);
-  }
-}
-
-/* SAVE */
-function saveLinks(){
-
-  for(let i=1;i<=20;i++){
-
-    localStorage.setItem(
-      "yt"+i,
-      document.getElementById("link"+i).value
-    );
-  }
-
-  alert("Tersimpan!");
-}
-
-/* LOAD */
-function loadLinks(){
-
-  for(let i=1;i<=20;i++){
-
-    document.getElementById("link"+i).value =
-      localStorage.getItem("yt"+i) || "";
-  }
-}
-
-/* CLOCK */
-function updateClock(){
-
-  document.getElementById("clock").innerHTML =
-    new Date().toLocaleTimeString("id-ID");
-}
-
-setInterval(updateClock,1000);
-
-updateClock();
-
-/* AUTO LOAD */
-loadLinks();
-</script>
-
-</body>
-</html>.play{
-  padding:8px;
-  margin-bottom:6px;
-  border:none;
-  border-radius:5px;
-  background:#6366f1;
-  color:white;
-  cursor:pointer;
-}
-
-iframe{
-  width:100%;
-  aspect-ratio:16/9;
-  border:none;
-  border-radius:5px;
-  background:#111;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .header h1{
-    font-size:20px;
-  }
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <h1>ANIBULBLACKIIMUT</h1>
-    <div class="clock" id="clock"></div>
-  </div>
-
-  <!-- PROMO -->
-  <div class="promo">
-    <p>🔥 Kunjungi Website Resmi ANIBULBLACKIIMUT 🔥</p>
-
-    <a href="https://blacki-imut.github.io/script-gemerator" target="_blank">
-      <button>🌐 Buka Website</button>
-    </a>
-  </div>
-
-  <!-- CONTROL -->
-  <div class="controls">
-    <button onclick="playAll()">▶ Play All</button>
-    <button onclick="saveLinks()">💾 Save</button>
-    <button onclick="loadLinks()">🔄 Load</button>
-  </div>
-
-  <!-- GRID -->
-  <div class="grid" id="grid"></div>
-
-</div>
-
-<script>
-const grid = document.getElementById("grid");
-
-/* BUAT 20 MONITOR */
-for(let i=1;i<=20;i++){
-
-  grid.innerHTML += `
-    <div class="monitor">
-      <input id="link${i}" placeholder="Link ${i}">
-      
-      <button class="play" onclick="playVideo(${i})">
-        Play
-      </button>
-
-      <iframe id="frame${i}" allowfullscreen></iframe>
-    </div>
-  `;
-}
-
-/* PLAY VIDEO */
-function playVideo(id){
-
-  const url = document.getElementById("link"+id).value;
-
-  let vid = "";
-
-  if(url.includes("watch?v=")){
-    vid = url.split("watch?v=")[1].split("&")[0];
-  }
-  else if(url.includes("youtu.be/")){
-    vid = url.split("youtu.be/")[1];
-  }
-
-  document.getElementById("frame"+id).src =
-    "https://www.youtube.com/embed/" + vid;
-}
-
-/* PLAY ALL */
-function playAll(){
-
-  for(let i=1;i<=20;i++){
-    playVideo(i);
-  }
-}
-
-/* SAVE */
-function saveLinks(){
-
-  for(let i=1;i<=20;i++){
-
-    localStorage.setItem(
-      "yt"+i,
-      document.getElementById("link"+i).value
-    );
-  }
-
-  alert("Tersimpan!");
-}
-
-/* LOAD */
-function loadLinks(){
-
-  for(let i=1;i<=20;i++){
-
-    document.getElementById("link"+i).value =
-      localStorage.getItem("yt"+i) || "";
-  }
-}
-
-/* CLOCK */
-function updateClock(){
-
-  document.getElementById("clock").innerHTML =
-    new Date().toLocaleTimeString("id-ID");
-}
-
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
 updateClock();
 
